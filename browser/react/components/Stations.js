@@ -4,6 +4,7 @@ import {Link} from 'react-router';
 export default function Stations(props) {
   console.log('stations props:', props);
   const stations = props.stations;
+  
 
 
   return (
@@ -14,7 +15,7 @@ export default function Stations(props) {
           Object.keys(stations).map(station => {
             return (
               <div className="list-group-item" key={station}>
-                <Link to={'fill/me/in/later'}>{station}</Link>
+                <Link to={`/stations/${station}`}>{station}</Link>
               </div>
             );
           })
