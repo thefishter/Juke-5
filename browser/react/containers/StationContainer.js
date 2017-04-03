@@ -3,17 +3,13 @@ import React, { Component } from "react";
 
 import Station from '../components/Station'
 import {convertSong} from '../utils.js'
+import {toggleSong} from '../action-creators/player.js'
 
 class StationContainer extends Component {
   constructor(props) {
     super(props)
   }
-
-  toggle(song, list) {
-    store.dispatch(toggleSong(song, list));
-  }
 }
-
 
 const filterSongsForStation = function (songsArray, ownProps) {
   const stationSongs = songsArray.filter((song) =>
@@ -28,13 +24,15 @@ const mapStateToProps = (state, ownProps) => ({
   isPlaying: state.player.isPlaying,
   currentSong: state.player.currentSong,
   genreName: ownProps.params.genreName
-
-}
-); 
+}); 
 
 
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  toggleOne: function (song, list) {
+    dispatch(toggleSong(song, list));
+  }
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Station)
